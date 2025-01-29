@@ -23,3 +23,11 @@ Virtual Machine Settings:
     ]
 }
 ```
+
+
+## Stuff still to do and notes:
+
+- MIP implementation
+- VR implementation
+- Opacity Implementation
+
