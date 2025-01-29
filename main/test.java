@@ -59,6 +59,14 @@ public class test extends Application {
 		getZMIP(MIPZImage);
 		ImageView MIPZView = new ImageView(MIPZImage);
 
+		//WritableImage MIPXImage = new WritableImage(256, 256);
+		//getXMIP(MIPXImage);
+		//ImageView MIPXView = new ImageView(MIPXImage);
+
+		//WritableImage MIPYImage = new WritableImage(256, 256);
+		//getYMIP(MIPYImage);
+		//ImageView MIPYView = new ImageView(MIPYImage);
+
 		//Create the simple GUI
 		Slider sliceZSlider = new Slider(0, 255, currZSlice);
 		
@@ -219,6 +227,26 @@ public class test extends Application {
 		}
 	}
 	
+	
+	public void getXMIP(WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+		
+		PixelWriter image_writer = image.getPixelWriter();
+		
+		for (int y = 0; y < height; y++) {
+			for (int z = 0; z < width; z++) {
+				//Implement MIP here
+				
+
+
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(z, y, color);
+			}
+		}
+	}
+
 	public void getXSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
@@ -235,6 +263,28 @@ public class test extends Application {
 			}
 		}
 	}
+
+	public void getYMIP(WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+	
+		PixelWriter image_writer = image.getPixelWriter();
+	
+		for (int z = 0; z < width; z++) {
+			for (int x = 0; x < height; x++) {
+				//Implement MIP here
+				
+
+
+				
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(z, x, color);
+			}
+		}
+	}
+
+
 	
 	public void getYSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
