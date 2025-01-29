@@ -69,6 +69,16 @@ public class test extends Application {
 
 		WritableImage VRZImage = new WritableImage(256, 256);
 		getZVR(VRZImage);
+		ImageView VRZView = new ImageView(VRZImage);
+
+		WritableImage VRXImage = new WritableImage(256, 256);
+		getXVR(VRXImage);
+		ImageView VRXView = new ImageView(VRXImage);
+
+		WritableImage VRYImage = new WritableImage(256, 256);
+		getYVR(VRYImage);
+		ImageView VRYView = new ImageView(VRYImage);
+
 
 		//Create the simple GUI
 		Slider sliceZSlider = new Slider(0, 255, currZSlice);
@@ -109,7 +119,17 @@ public class test extends Application {
 			}
 		});
 
+		Slider opacitySlider = new Slider(0, 100, 50);
 
+		opacitySlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue <? extends Number >
+					observable, Number oldValue, Number newValue) {
+
+				// Implement opacity change here
+				// Opacity affects the three volume rendered views
+
+			}
+		});
 
 		//Add all the GUI elements
 		//I'll start a grid for you
@@ -122,15 +142,19 @@ public class test extends Application {
       	//we need to add it to the grid
 		grid.add(sliceZView, 0, 1); // Slider at column 0, row 1
 		grid.add(MIPZView, 0, 2); // Slider at column 0, row 1
+		grid.add(VRZView, 0, 3);
 		
 		grid.add(sliceXSlider, 1, 0);
 		grid.add(sliceXView, 1, 1);
 		grid.add(MIPXView, 1, 2);
+		grid.add(VRXView, 1, 3);
 
 		grid.add(sliceYSlider, 2, 0);
 		grid.add(sliceYView, 2, 1);
 		grid.add(MIPYView, 2, 2);
+		grid.add(VRYView, 2, 3);
 
+		grid.add(opacitySlider, 1, 4);
 
 		// Create a scene and set the stage
         Scene scene = new Scene(grid, 800, 840);
