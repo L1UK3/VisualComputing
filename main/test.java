@@ -1,6 +1,3 @@
-package main;
-
-
 /*
 CS-256 Getting started code for the assignment
 I do not give you permission to post this code online
