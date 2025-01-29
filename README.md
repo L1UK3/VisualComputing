@@ -1,4 +1,8 @@
 
+# Visual Computing Coursework
+
+## Setup Reminders:
+
 [JavaFX](https://openjfx.io/)
 
 Virtual Machine Settings:
