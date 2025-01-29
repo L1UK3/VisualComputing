@@ -32,7 +32,7 @@ public class test extends Application {
 		stage.setTitle("CThead Viewer");
 		
 		try {
-			ReadData();
+			readData();
 		} catch (IOException e) {
 			System.out.println("Error: The CThead file is not in the working directory");
 			System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -42,13 +42,19 @@ public class test extends Application {
 		//We need 3 things to see an image
 		//1. We need to create the image
 		WritableImage sliceZImage = new WritableImage(256, 256); //allocate memory for the image
-		GetZSlice(currZSlice, sliceZImage); //make the image - in this case go get the slice and copy it into the image
+		getZSlice(currZSlice, sliceZImage); //make the image - in this case go get the slice and copy it into the image
 		//2. We link a view in the GUI to that image
 		ImageView sliceZView = new ImageView(sliceZImage); //and then see 3. below
 
+		WritableImage sliceXImage = new WritableImage(256, 246);
+		getXSlice()
+
+
+
+
 		// Do the same for MIP
 		WritableImage MIPZImage = new WritableImage(256, 256);
-		GetZMIP(MIPZImage);
+		getZMIP(MIPZImage);
 		ImageView MIPZView = new ImageView(MIPZImage);
 
 		//Create the simple GUI
@@ -61,10 +67,10 @@ public class test extends Application {
 				currZSlice = newValue.intValue();
 				//System.out.println(currZSlice);
 				//We update our Image
-		        GetZSlice(currZSlice, sliceZImage); //go get the slice image
+		        getZSlice(currZSlice, sliceZImage); //go get the slice image
 				//Because sliceZView (an ImageView) is linked to it, this will automatically update the displayed image in the GUI
             } 
-        });		
+    	});		
 
 	
 
@@ -98,7 +104,7 @@ public class test extends Application {
     
 
 	//Function to read in the cthead data set
-	public void ReadData() throws IOException {
+	public void readData() throws IOException {
 		//If you've put the test.java in a directory called "src" and put the dataset in the parent directory, then this will be the correct path
 		File file = new File("CThead-256cubed.bin");
 		//Read the data quickly via a buffer (in C++ you can just do a single fread - I couldn't find the equivalent in Java)
@@ -140,7 +146,7 @@ public class test extends Application {
 		//and grey is 0-1 float data that can be displayed by Java
 	}
 
-	public void GetZMIP(WritableImage image) {
+	public void getZMIP(WritableImage image) {
 		//Find the width and height of the image to be process
 		int width = (int)image.getWidth();
         int height = (int)image.getHeight();
@@ -162,7 +168,7 @@ public class test extends Application {
 		}
 	}
 
-	public void GetZSlice(int slice, WritableImage image) {
+	public void getZSlice(int slice, WritableImage image) {
 		//Find the width and height of the image to be process
 		int width = (int)image.getWidth();
         int height = (int)image.getHeight();
