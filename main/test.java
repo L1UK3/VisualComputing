@@ -114,13 +114,11 @@ public class test extends Application {
 		
 		grid.add(sliceXSlider, 1, 0);
 		grid.add(sliceXView, 1, 1);
-		//grid.add(MIPZView, 1, 2); // Change to MIPXView
+		//grid.add(MIPXView, 1, 2);
 
 		grid.add(sliceYSlider, 2, 0);
 		grid.add(sliceYView, 2, 1);
-		//grid.add(MIPZView, 2, 2); // Change to MIPYView
-
-
+		//grid.add(MIPYView, 2, 2);
 
 
 		// Create a scene and set the stage
@@ -221,45 +219,42 @@ public class test extends Application {
 		}
 	}
 	
-	public void getYSlice(int slice, WritableImage image) {
-		//Find the width and height of the image to be process
-		int width = (int)image.getWidth();
-		int height = (int)image.getHeight();
-		float val;
-
-		PixelWriter image_writer = image.getPixelWriter();
-
-		for (int z = 0; z < width; z++) {
-			for (int x = 0; x < height; x++) {
-				val = grey[z][slice][x];
-
-				Color color=Color.color(val, val, val);
-				image_writer.setColor(z, x, color);
-			}
-		}
-	}
-
-
 	public void getXSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
 		float val;
-
+		
 		PixelWriter image_writer = image.getPixelWriter();
+		
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				val = grey[y][slice][x];
 
+				Color color=Color.color(val, val, val);
+				image_writer.setColor(x, y, color);
+			}
+		}
+	}
+	
+	public void getYSlice(int slice, WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+	
+		PixelWriter image_writer = image.getPixelWriter();
+	
 		for (int z = 0; z < width; z++) {
 			for (int y = 0; y < height; y++) {
-				val = grey[z][y][slice];
-
+				val = grey[y][z][slice];
+	
 				Color color=Color.color(val, val, val);
 				image_writer.setColor(z, y, color);
 			}
 		}
 	}
-
-
+	
 	
     public static void main(String[] args) {
-        launch();
+		launch();
     }
 }
