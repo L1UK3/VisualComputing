@@ -59,13 +59,13 @@ public class test extends Application {
 		getZMIP(MIPZImage);
 		ImageView MIPZView = new ImageView(MIPZImage);
 
-		//WritableImage MIPXImage = new WritableImage(256, 256);
-		//getXMIP(MIPXImage);
-		//ImageView MIPXView = new ImageView(MIPXImage);
+		WritableImage MIPXImage = new WritableImage(256, 256);
+		getXMIP(MIPXImage);
+		ImageView MIPXView = new ImageView(MIPXImage);
 
-		//WritableImage MIPYImage = new WritableImage(256, 256);
-		//getYMIP(MIPYImage);
-		//ImageView MIPYView = new ImageView(MIPYImage);
+		WritableImage MIPYImage = new WritableImage(256, 256);
+		getYMIP(MIPYImage);
+		ImageView MIPYView = new ImageView(MIPYImage);
 
 		//Create the simple GUI
 		Slider sliceZSlider = new Slider(0, 255, currZSlice);
@@ -122,11 +122,11 @@ public class test extends Application {
 		
 		grid.add(sliceXSlider, 1, 0);
 		grid.add(sliceXView, 1, 1);
-		//grid.add(MIPXView, 1, 2);
+		grid.add(MIPXView, 1, 2);
 
 		grid.add(sliceYSlider, 2, 0);
 		grid.add(sliceYView, 2, 1);
-		//grid.add(MIPYView, 2, 2);
+		grid.add(MIPYView, 2, 2);
 
 
 		// Create a scene and set the stage
