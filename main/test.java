@@ -24,6 +24,8 @@ public class test extends Application {
 	short min, max; //min/max value in the 3D volume data set
 
 	int currZSlice=128;
+	int currXSlice=128;
+	int currYSlice=128;
 
     @Override
     public void start(Stage stage) throws FileNotFoundException {
@@ -63,6 +65,9 @@ public class test extends Application {
 				//Because sliceZView (an ImageView) is linked to it, this will automatically update the displayed image in the GUI
             } 
         });		
+
+	
+
 
 		//Add all the GUI elements
 		//I'll start a grid for you
@@ -175,6 +180,42 @@ public class test extends Application {
 		}
 	}
 	
+	public void getYSlice(int slice, WritableImage image) {
+		//Find the width and height of the image to be process
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+
+		PixelWriter image_writer = image.getPixelWriter();
+
+		for (int z = 0; z < width; z++) {
+			for (int x = 0; x < height; x++) {
+				val = grey[z][slice][x];
+
+				Color color=Color.color(val, val, val);
+				image_writer.setColor(z, x, color);
+			}
+		}
+	}
+
+
+	public void getXSlice(int slice, WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+
+		PixelWriter image_writer = image.getPixelWriter();
+
+		for (int z = 0; z < width; z++) {
+			for (int y = 0; y < height; y++) {
+				val = grey[z][y][slice];
+
+				Color color=Color.color(val, val, val);
+				image_writer.setColor(z, y, color);
+			}
+		}
+	}
+
 
 	
     public static void main(String[] args) {
