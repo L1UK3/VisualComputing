@@ -114,15 +114,11 @@ public class test extends Application {
 		
 		grid.add(sliceXSlider, 1, 0);
 		grid.add(sliceXView, 1, 1);
+		grid.add(MIPZView, 1, 2); // Change to MIPXView
 
 		grid.add(sliceYSlider, 2, 0);
 		grid.add(sliceYView, 2, 1);
-
-
-
-
-
-
+		grid.add(MIPZView, 2, 2); // Change to MIPYView
 
 
 
