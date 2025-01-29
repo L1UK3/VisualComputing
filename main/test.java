@@ -44,7 +44,7 @@ public class test extends Application {
 		WritableImage sliceZImage = new WritableImage(256, 256); //allocate memory for the image
 		GetZSlice(currZSlice, sliceZImage); //make the image - in this case go get the slice and copy it into the image
 		//2. We link a view in the GUI to that image
-		ImageView sliceXView = new ImageView(sliceZImage); //and then see 3. below
+		ImageView sliceZView = new ImageView(sliceZImage); //and then see 3. below
 
 		// Do the same for MIP
 		WritableImage MIPZImage = new WritableImage(256, 256);
@@ -78,9 +78,16 @@ public class test extends Application {
 
         //3. (referring to the 3 things we need to display an image)
       	//we need to add it to the grid
-		grid.add(sliceXView, 0, 1); // Slider at column 0, row 1
+		grid.add(sliceZView, 0, 1); // Slider at column 0, row 1
 		grid.add(MIPZView, 0, 2); // Slider at column 0, row 1
 		
+
+
+
+
+
+
+
 
 		// Create a scene and set the stage
         Scene scene = new Scene(grid, 800, 840);
