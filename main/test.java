@@ -67,6 +67,9 @@ public class test extends Application {
 		getYMIP(MIPYImage);
 		ImageView MIPYView = new ImageView(MIPYImage);
 
+		WritableImage VRZImage = new WritableImage(256, 256);
+		getZVR(VRZImage);
+
 		//Create the simple GUI
 		Slider sliceZSlider = new Slider(0, 255, currZSlice);
 		
@@ -202,6 +205,26 @@ public class test extends Application {
 		}
 	}
 
+	public void getZVR(WritableImage image) {
+		//Find the width and height of the image to be process
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+
+		//Get an interface to write to that image memory
+		PixelWriter image_writer = image.getPixelWriter();
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				//Implement Volume Rendering here
+				
+
+				
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(x, y, color);
+			}
+		}
+	}
+
 	public void getZSlice(int slice, WritableImage image) {
 		//Find the width and height of the image to be process
 		int width = (int)image.getWidth();
@@ -247,6 +270,25 @@ public class test extends Application {
 		}
 	}
 
+	public void getXVR(WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+		
+		PixelWriter image_writer = image.getPixelWriter();
+		
+		for (int y = 0; y < height; y++) {
+			for (int z = 0; z < width; z++) {
+				//Implement Volume Rendering here
+				
+
+				
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(z, y, color);
+			}
+		}
+	}
+
 	public void getXSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
@@ -254,8 +296,8 @@ public class test extends Application {
 		
 		PixelWriter image_writer = image.getPixelWriter();
 		
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
+		for (int y = 0; y < height; y++) { 
+			for (int x = 0; x < width; x++) {
 				val = grey[y][slice][x];
 
 				Color color=Color.color(val, val, val);
@@ -276,6 +318,25 @@ public class test extends Application {
 				//Implement MIP here
 				
 
+
+				
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(z, x, color);
+			}
+		}
+	}
+
+	public void getYVR(WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+	
+		PixelWriter image_writer = image.getPixelWriter();
+	
+		for (int z = 0; z < width; z++) {
+			for (int x = 0; x < height; x++) {
+				//Implement Volume Rendering here
+				
 
 				
 				Color color=Color.color(1.0, 1.0, 1.0);
