@@ -12,7 +12,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;  
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.PixelWriter;
