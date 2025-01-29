@@ -47,10 +47,12 @@ public class test extends Application {
 		ImageView sliceZView = new ImageView(sliceZImage); //and then see 3. below
 
 		WritableImage sliceXImage = new WritableImage(256, 246);
-		getXSlice()
+		getXSlice(currXSlice, sliceXImage);
+		ImageView sliceXView = new ImageView(sliceXImage);
 
-
-
+		WritableImage sliceYImage = new WritableImage(256, 256);
+		getYSlice(currYSlice, sliceYImage);
+		ImageView sliceYView = new ImageView(sliceYImage);
 
 		// Do the same for MIP
 		WritableImage MIPZImage = new WritableImage(256, 256);
@@ -73,6 +75,29 @@ public class test extends Application {
     	});		
 
 	
+		Slider sliceXSlider = new Slider(0, 255, currXSlice);
+
+		sliceXSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue <? extends Number >
+					observable, Number oldValue, Number newValue) {
+
+				currXSlice = newValue.intValue();
+				getXSlice(currXSlice, sliceXImage);
+			}
+		});
+
+
+		Slider sliceYSlider = new Slider(0, 255, currYSlice);
+
+		sliceYSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue <? extends Number >
+					observable, Number oldValue, Number newValue) {
+
+				currYSlice = newValue.intValue();
+				getYSlice(currYSlice, sliceYImage);
+			}
+		});
+
 
 
 		//Add all the GUI elements
@@ -87,6 +112,13 @@ public class test extends Application {
 		grid.add(sliceZView, 0, 1); // Slider at column 0, row 1
 		grid.add(MIPZView, 0, 2); // Slider at column 0, row 1
 		
+		grid.add(sliceXSlider, 1, 0);
+		grid.add(sliceXView, 1, 1);
+
+		grid.add(sliceYSlider, 2, 0);
+		grid.add(sliceYView, 2, 1);
+
+
 
 
 
