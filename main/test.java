@@ -222,6 +222,8 @@ public class test extends Application {
 				//Implement MIP here
 				
 				
+
+				
 				
 				//But I'll just make a white colour and copy it into the image
 				Color color=Color.color(1.0, 1.0, 1.0);
@@ -378,12 +380,12 @@ public class test extends Application {
 	
 		PixelWriter image_writer = image.getPixelWriter();
 	
-		for (int z = 0; z < width; z++) {
+		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				val = grey[y][z][slice];
+				val = grey[y][x][slice];
 	
 				Color color=Color.color(val, val, val);
-				image_writer.setColor(z, y, color);
+				image_writer.setColor(x, y, color);
 			}
 		}
 	}
