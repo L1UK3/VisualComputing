@@ -5,7 +5,7 @@
 
 [JavaFX](https://openjfx.io/)
 
-Virtual Machine Settings:
+Virtual Machine Settings for VSCode:
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
