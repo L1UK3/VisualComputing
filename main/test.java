@@ -94,7 +94,6 @@ public class test extends Application {
             } 
     	});		
 
-	
 		Slider sliceXSlider = new Slider(0, 255, currXSlice);
 		sliceXSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue <? extends Number >
@@ -104,7 +103,6 @@ public class test extends Application {
 				getXSlice(currXSlice, sliceXImage);
 			}
 		});
-
 
 		Slider sliceYSlider = new Slider(0, 255, currYSlice);
 		sliceYSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -222,6 +220,7 @@ public class test extends Application {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				//Implement MIP here
+				
 				
 				
 				//But I'll just make a white colour and copy it into the image
