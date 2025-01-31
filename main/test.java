@@ -128,6 +128,14 @@ public class test extends Application {
 				// Implement opacity change here
 				// Opacity affects the three volume rendered views
 
+				/* Update images to show slider working on all 3 images:
+				currZSlice = newValue.intValue();
+		        getZSlice(currZSlice, sliceZImage);
+				currXSlice = newValue.intValue();
+				getXSlice(currXSlice, sliceXImage);
+				currYSlice = newValue.intValue();
+				getYSlice(currYSlice, sliceYImage);
+				*/
 			}
 		});
 
