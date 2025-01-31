@@ -82,7 +82,6 @@ public class test extends Application {
 
 		//Create the simple GUI
 		Slider sliceZSlider = new Slider(0, 255, currZSlice);
-		
 		sliceZSlider.valueProperty().addListener(new ChangeListener<Number>() { 
 			public void changed(ObservableValue <? extends Number >  
 					observable, Number oldValue, Number newValue) { 
@@ -97,7 +96,6 @@ public class test extends Application {
 
 	
 		Slider sliceXSlider = new Slider(0, 255, currXSlice);
-
 		sliceXSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue <? extends Number >
 					observable, Number oldValue, Number newValue) {
@@ -109,7 +107,6 @@ public class test extends Application {
 
 
 		Slider sliceYSlider = new Slider(0, 255, currYSlice);
-
 		sliceYSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue <? extends Number >
 					observable, Number oldValue, Number newValue) {
@@ -120,7 +117,6 @@ public class test extends Application {
 		});
 
 		Slider opacitySlider = new Slider(0, 100, 50);
-
 		opacitySlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue <? extends Number >
 					observable, Number oldValue, Number newValue) {
@@ -282,7 +278,6 @@ public class test extends Application {
 		}
 	}
 	
-	
 	public void getXMIP(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
@@ -377,8 +372,6 @@ public class test extends Application {
 		}
 	}
 
-
-	
 	public void getYSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
