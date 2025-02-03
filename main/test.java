@@ -122,14 +122,6 @@ public class test extends Application {
 				// Implement opacity change here
 				// Opacity affects the three volume rendered views
 
-				/* Update images to show slider working on all 3 images:
-				currZSlice = newValue.intValue();
-		        getZSlice(currZSlice, sliceZImage);
-				currXSlice = newValue.intValue();
-				getXSlice(currXSlice, sliceXImage);
-				currYSlice = newValue.intValue();
-				getYSlice(currYSlice, sliceYImage);
-				*/
 			}
 		});
 
@@ -289,6 +281,8 @@ public class test extends Application {
 		for (int y = 0; y < height; y++) {
 			for (int z = 0; z < width; z++) {
 				//Implement MIP here
+				
+				//Find the pixels in each slice that has the brightest colour
 				
 
 
