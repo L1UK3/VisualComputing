@@ -201,50 +201,7 @@ public class test extends Application {
 		//and grey is 0-1 float data that can be displayed by Java
 	}
 
-	public void getZMIP(WritableImage image) {
-		//Find the width and height of the image to be process
-		int width = (int)image.getWidth();
-        int height = (int)image.getHeight();
 
-		//Get an interface to write to that image memory
-		PixelWriter image_writer = image.getPixelWriter();
-
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				//Implement MIP here
-				
-				
-
-				
-				
-				//But I'll just make a white colour and copy it into the image
-				Color color=Color.color(1.0, 1.0, 1.0);
-				
-				//Apply the new colour
-				image_writer.setColor(x, y, color);
-			}
-		}
-	}
-
-	public void getZVR(WritableImage image) {
-		//Find the width and height of the image to be process
-		int width = (int)image.getWidth();
-		int height = (int)image.getHeight();
-
-		//Get an interface to write to that image memory
-		PixelWriter image_writer = image.getPixelWriter();
-
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				//Implement Volume Rendering here
-				
-
-				
-				Color color=Color.color(1.0, 1.0, 1.0);
-				image_writer.setColor(x, y, color);
-			}
-		}
-	}
 
 	public void getZSlice(int slice, WritableImage image) {
 		//Find the width and height of the image to be process
@@ -270,7 +227,70 @@ public class test extends Application {
 			}
 		}
 	}
+
+	public void getZMIP(WritableImage image) {
+		//Find the width and height of the image to be process
+		int width = (int)image.getWidth();
+        int height = (int)image.getHeight();
+
+		//Get an interface to write to that image memory
+		PixelWriter image_writer = image.getPixelWriter();
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				//Implement MIP here
+
+				float maxSoFar = min;
+
+				for (int z = 0; z < 256; z++) {
+					maxSoFar = Math.max(grey[z][y][x], maxSoFar);
+				}
+				
+				Color color = Color.color(maxSoFar, maxSoFar, maxSoFar);
+				image_writer.setColor(x, y, color);
+			}
+		}
+	}
+
+	public void getZVR(WritableImage image) {
+		//Find the width and height of the image to be process
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+
+		//Get an interface to write to that image memory
+		PixelWriter image_writer = image.getPixelWriter();
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				//Implement Volume Rendering here
+				
+
+				
+				Color color=Color.color(1.0, 1.0, 1.0);
+				image_writer.setColor(x, y, color);
+			}
+		}
+	}
+
 	
+
+	public void getXSlice(int slice, WritableImage image) {
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
+		float val;
+	
+		PixelWriter image_writer = image.getPixelWriter();
+	
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				val = grey[y][x][slice];
+	
+				Color color=Color.color(val, val, val);
+				image_writer.setColor(x, y, color);
+			}
+		}
+	}
+
 	public void getXMIP(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
@@ -284,9 +304,13 @@ public class test extends Application {
 				
 				//Find the pixels in each slice that has the brightest colour
 				
+				float maxSoFar = min;
 
+				for (int x = 0; x < 256; x++) {
+					maxSoFar = Math.max(grey[y][z][x], maxSoFar);
+				}
 
-				Color color=Color.color(1.0, 1.0, 1.0);
+				Color color=Color.color(maxSoFar, maxSoFar, maxSoFar);
 				image_writer.setColor(z, y, color);
 			}
 		}
@@ -311,7 +335,9 @@ public class test extends Application {
 		}
 	}
 
-	public void getXSlice(int slice, WritableImage image) {
+
+
+	public void getYSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
 		float val;
@@ -331,7 +357,6 @@ public class test extends Application {
 	public void getYMIP(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
-		float val;
 	
 		PixelWriter image_writer = image.getPixelWriter();
 	
@@ -339,11 +364,14 @@ public class test extends Application {
 			for (int x = 0; x < height; x++) {
 				//Implement MIP here
 				
+				float maxSoFar = min;
 
+				for (int y = 0; y < 256; y++) {
+					maxSoFar = Math.max(grey[z][y][x], maxSoFar);
+				}
 
-				
-				Color color=Color.color(1.0, 1.0, 1.0);
-				image_writer.setColor(z, x, color);
+				Color color=Color.color(maxSoFar, maxSoFar, maxSoFar);
+				image_writer.setColor(x, z, color);
 			}
 		}
 	}
@@ -367,22 +395,6 @@ public class test extends Application {
 		}
 	}
 
-	public void getYSlice(int slice, WritableImage image) {
-		int width = (int)image.getWidth();
-		int height = (int)image.getHeight();
-		float val;
-	
-		PixelWriter image_writer = image.getPixelWriter();
-	
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				val = grey[y][x][slice];
-	
-				Color color=Color.color(val, val, val);
-				image_writer.setColor(x, y, color);
-			}
-		}
-	}
 	
 	
     public static void main(String[] args) {
