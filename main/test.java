@@ -120,7 +120,7 @@ public class test extends Application {
 					observable, Number oldValue, Number newValue) {
 
 				// Implement opacity change here
-				// Opacity affects the three volume rendered views
+				
 
 			}
 		});
@@ -251,12 +251,9 @@ public class test extends Application {
 	}
 
 	public void getZVR(WritableImage image) {
-		//Find the width and height of the image to be process
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
-		
 
-		//Get an interface to write to that image memory
 		PixelWriter image_writer = image.getPixelWriter();
 
 		for (int y = 0; y < height; y++) {
