@@ -23,9 +23,9 @@ public class test extends Application {
 	float grey[][][]; //store the 3D volume data set converted to 0-1 ready to copy to the image
 	short min, max; //min/max value in the 3D volume data set
 
-	int currZSlice=128;
-	int currXSlice=128;
-	int currYSlice=128;
+	int currZSlice = 128;
+	int currXSlice = 128;
+	int currYSlice = 128;
 
     @Override
     public void start(Stage stage) throws FileNotFoundException {
@@ -254,6 +254,7 @@ public class test extends Application {
 		//Find the width and height of the image to be process
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
+		
 
 		//Get an interface to write to that image memory
 		PixelWriter image_writer = image.getPixelWriter();
@@ -263,6 +264,7 @@ public class test extends Application {
 				//Implement Volume Rendering here
 				
 
+				
 				
 				Color color=Color.color(1.0, 1.0, 1.0);
 				image_writer.setColor(x, y, color);
