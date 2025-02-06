@@ -238,10 +238,8 @@ public class test extends Application {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				//Implement MIP here
 
 				float maxSoFar = min;
-
 				for (int z = 0; z < 256; z++) {
 					maxSoFar = Math.max(grey[z][y][x], maxSoFar);
 				}
@@ -299,12 +297,8 @@ public class test extends Application {
 		
 		for (int y = 0; y < height; y++) {
 			for (int z = 0; z < width; z++) {
-				//Implement MIP here
-				
-				//Find the pixels in each slice that has the brightest colour
 				
 				float maxSoFar = min;
-
 				for (int x = 0; x < 256; x++) {
 					maxSoFar = Math.max(grey[y][z][x], maxSoFar);
 				}
@@ -360,10 +354,8 @@ public class test extends Application {
 	
 		for (int z = 0; z < width; z++) {
 			for (int x = 0; x < height; x++) {
-				//Implement MIP here
-				
-				float maxSoFar = min;
 
+				float maxSoFar = min;
 				for (int y = 0; y < 256; y++) {
 					maxSoFar = Math.max(grey[z][y][x], maxSoFar);
 				}
