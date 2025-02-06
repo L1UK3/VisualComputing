@@ -13,7 +13,7 @@ Virtual Machine Settings for VSCode:
 
 ## Stuff still to do and notes:
 
-- MIP implementation
+~~- MIP implementation~~
 - VR implementation
 - Opacity Implementation
 
