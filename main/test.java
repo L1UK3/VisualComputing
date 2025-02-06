@@ -294,7 +294,6 @@ public class test extends Application {
 	public void getXMIP(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
-		float val;
 		
 		PixelWriter image_writer = image.getPixelWriter();
 		
@@ -319,7 +318,6 @@ public class test extends Application {
 	public void getXVR(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
-		float val;
 		
 		PixelWriter image_writer = image.getPixelWriter();
 		
@@ -379,7 +377,6 @@ public class test extends Application {
 	public void getYVR(WritableImage image) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
-		float val;
 	
 		PixelWriter image_writer = image.getPixelWriter();
 	
