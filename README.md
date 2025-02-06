@@ -14,7 +14,7 @@ Virtual Machine Settings for VSCode:
             "type": "java",
             "name": "Launch App",
             "request": "launch",
-            "mainClass": "main.test",
+            "mainClass": "src.test",
             "vmArgs": "--module-path 'C:/Program Files/Java/javafx-sdk-23.0.2/lib' --add-modules javafx.controls"
         }
     ]
