@@ -202,6 +202,12 @@ public class test extends Application {
 	}
 
 
+	
+	public Color transferFunction() {
+		return null;
+	}
+
+
 	// Z Direction
 
 	public void getZSlice(int slice, WritableImage image) {
