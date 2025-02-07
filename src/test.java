@@ -202,6 +202,7 @@ public class test extends Application {
 	}
 
 
+	// Z Direction
 
 	public void getZSlice(int slice, WritableImage image) {
 		//Find the width and height of the image to be process
@@ -270,6 +271,7 @@ public class test extends Application {
 	}
 
 	
+	// X Direction
 
 	public void getXSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
@@ -327,6 +329,7 @@ public class test extends Application {
 	}
 
 
+	// Y Direction
 
 	public void getYSlice(int slice, WritableImage image) {
 		int width = (int)image.getWidth();
