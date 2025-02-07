@@ -7,7 +7,11 @@
 
 Virtual Machine Settings for VSCode:
 ```json
-{"vmArgs": "--module-path 'C:/Program Files/Java/javafx-sdk-23.0.2/lib' --add-modules javafx.controls"}
+{
+    ,"vmArgs": "--module-path '' --add-modules javafx.controls"
+}
+'C:/Program Files/Java/javafx-sdk-23.0.1/lib'
+'C:/Program Files/Java/javafx-sdk-23.0.2/lib'
 ```
 
 
