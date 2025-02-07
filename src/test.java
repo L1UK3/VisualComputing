@@ -202,9 +202,20 @@ public class test extends Application {
 	}
 
 
-	
-	public Color transferFunction() {
-		return null;
+	// incorrect function for now
+	public Color transferFunction(float val) {
+		if (val < -300) {
+			return Color.color(0.0, 0.0, 0.0);
+		} 
+		else if (val > -300 && val < 49) {
+			return Color.color(1.0, 0.79, 0.6);
+		}
+		else if (val > 50 && val < 299) {
+			return Color.color(0.0, 0.0, 0.0);
+		}
+		else {
+			return Color.color(1.0, 1.0, 1.0);
+		}
 	}
 
 
