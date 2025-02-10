@@ -273,8 +273,6 @@ public class test extends Application {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				//Implement Volume Rendering here
-				
 
 				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
 
@@ -292,12 +290,6 @@ public class test extends Application {
 					image_writer.setColor(x, y, c_accum);
 
 				}
-
-				
-
-				
-
-				
 			}
 		}
 	}
@@ -350,7 +342,7 @@ public class test extends Application {
 		
 		for (int y = 0; y < height; y++) {
 			for (int z = 0; z < width; z++) {
-				//Implement Volume Rendering here
+				
 				
 				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
 
@@ -437,10 +429,6 @@ public class test extends Application {
 					image_writer.setColor(x, z, c_accum);
 
 				}
-
-				
-				Color color=Color.color(1.0, 1.0, 1.0);
-				image_writer.setColor(z, x, color);
 			}
 		}
 	}
