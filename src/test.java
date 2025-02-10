@@ -276,10 +276,28 @@ public class test extends Application {
 				//Implement Volume Rendering here
 				
 
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
+
+				for (int z = 255; z > 0; z--) {
+
+					short newColor = cthead[z][y][x];
+					Color c_new = transferFunction(newColor);
+
+					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
+					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
+					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
+					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
+
+					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+					image_writer.setColor(x, y, c_accum);
+
+				}
+
 				
+
 				
-				Color color=Color.color(1.0, 1.0, 1.0);
-				image_writer.setColor(x, y, color);
+
+				
 			}
 		}
 	}
@@ -334,10 +352,22 @@ public class test extends Application {
 			for (int z = 0; z < width; z++) {
 				//Implement Volume Rendering here
 				
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
 
-				
-				Color color=Color.color(1.0, 1.0, 1.0);
-				image_writer.setColor(z, y, color);
+				for (int x = 255; x > 0; x--) {
+
+					short newColor = cthead[y][z][x];
+					Color c_new = transferFunction(newColor);
+
+					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
+					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
+					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
+					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
+
+					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+					image_writer.setColor(z, y, c_accum);
+
+				}
 			}
 		}
 	}
@@ -390,8 +420,23 @@ public class test extends Application {
 	
 		for (int z = 0; z < width; z++) {
 			for (int x = 0; x < height; x++) {
-				//Implement Volume Rendering here
-				
+
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
+
+				for (int y = 255; y > 0; y--) {
+
+					short newColor = cthead[z][y][x];
+					Color c_new = transferFunction(newColor);
+
+					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
+					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
+					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
+					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
+
+					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+					image_writer.setColor(x, z, c_accum);
+
+				}
 
 				
 				Color color=Color.color(1.0, 1.0, 1.0);
@@ -401,7 +446,7 @@ public class test extends Application {
 	}
 
 	
-	
+
     public static void main(String[] args) {
 		launch();
     }
