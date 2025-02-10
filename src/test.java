@@ -201,20 +201,17 @@ public class test extends Application {
 		//and grey is 0-1 float data that can be displayed by Java
 	}
 
-
-	// incorrect function for now
+	
+	// Transfer function for Volume Rendering
 	public Color transferFunction(float val) {
 		if (val < -300) {
-			return Color.color(0.0, 0.0, 0.0);
-		} 
-		else if (val > -300 && val < 49) {
-			return Color.color(1.0, 0.79, 0.6);
-		}
-		else if (val > 50 && val < 299) {
-			return Color.color(0.0, 0.0, 0.0);
-		}
-		else {
-			return Color.color(1.0, 1.0, 1.0);
+			return Color.color(0.0, 0.0, 0.0, 0.0);
+		} else if (val >= -300 && val <= 49) {
+			return Color.color(1.0, 0.79, 0.6, 0.12);
+		} else if (val >= 50 && val <= 299) {
+			return Color.color(0.0, 0.0, 0.0, 0.0);
+		} else {
+			return Color.color(1.0, 1.0, 1.0, 0.8);
 		}
 	}
 
