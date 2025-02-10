@@ -27,6 +27,8 @@ public class test extends Application {
 	int currXSlice = 128;
 	int currYSlice = 128;
 
+	int skinOpacity = 50;
+
     @Override
     public void start(Stage stage) throws FileNotFoundException {
 		stage.setTitle("CThead Viewer");
@@ -68,15 +70,15 @@ public class test extends Application {
 		ImageView MIPYView = new ImageView(MIPYImage);
 
 		WritableImage VRZImage = new WritableImage(256, 256);
-		getZVR(VRZImage);
+		getZVR(VRZImage, skinOpacity);
 		ImageView VRZView = new ImageView(VRZImage);
 
 		WritableImage VRXImage = new WritableImage(256, 256);
-		getXVR(VRXImage);
+		getXVR(VRXImage, skinOpacity);
 		ImageView VRXView = new ImageView(VRXImage);
 
 		WritableImage VRYImage = new WritableImage(256, 256);
-		getYVR(VRYImage);
+		getYVR(VRYImage, skinOpacity);
 		ImageView VRYView = new ImageView(VRYImage);
 
 
@@ -119,8 +121,10 @@ public class test extends Application {
 			public void changed(ObservableValue <? extends Number >
 					observable, Number oldValue, Number newValue) {
 
-				// Implement opacity change here
-				
+				skinOpacity = newValue.intValue();
+				getZVR(VRZImage, skinOpacity);
+				getXVR(VRXImage, skinOpacity);
+				getYVR(VRYImage, skinOpacity);
 
 			}
 		});
@@ -203,11 +207,11 @@ public class test extends Application {
 
 	
 	// Transfer function for Volume Rendering
-	public Color transferFunction(float val) {
+	public Color transferFunction(float val, double opacity) {
 		if (val < -300) {
 			return Color.color(0.0, 0.0, 0.0, 0.0);
 		} else if (val >= -300 && val <= 49) {
-			return Color.color(0.82, 0.49, 0.18, 0.12);
+			return Color.color(0.82, 0.49, 0.18, opacity/100);
 		} else if (val >= 50 && val <= 299) {
 			return Color.color(0.0, 0.0, 0.0, 0.0);
 		} else {
@@ -265,29 +269,29 @@ public class test extends Application {
 		}
 	}
 
-	public void getZVR(WritableImage image) {
-		int width = (int)image.getWidth();
-		int height = (int)image.getHeight();
+	public void getZVR(WritableImage image, double skinOpacity) {
+			int width = (int)image.getWidth();
+			int height = (int)image.getHeight();
+	
+			PixelWriter image_writer = image.getPixelWriter();
+	
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
+	
+					Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
+	
+					for (int z = 255; z > 0; z--) {
+	
+						short newColor = cthead[z][y][x];
+						Color c_new = transferFunction(newColor, skinOpacity);
 
-		PixelWriter image_writer = image.getPixelWriter();
+						double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
+						double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
+						double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
+						double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-
-				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
-
-				for (int z = 255; z > 0; z--) {
-
-					short newColor = cthead[z][y][x];
-					Color c_new = transferFunction(newColor);
-
-					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
-					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
-					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
-
-					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
-					image_writer.setColor(x, y, c_accum);
+						c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+						image_writer.setColor(x, y, c_accum);
 
 				}
 			}
@@ -334,7 +338,7 @@ public class test extends Application {
 		}
 	}
 
-	public void getXVR(WritableImage image) {
+	public void getXVR(WritableImage image, double skinOpacity) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
 		
@@ -349,7 +353,7 @@ public class test extends Application {
 				for (int x = 255; x > 0; x--) {
 
 					float newColor = cthead[y][z][x];
-					Color c_new = transferFunction(newColor);
+					Color c_new = transferFunction(newColor, skinOpacity);
 
 					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
 					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
@@ -404,7 +408,7 @@ public class test extends Application {
 		}
 	}
 
-	public void getYVR(WritableImage image) {
+	public void getYVR(WritableImage image, double skinOpacity) {
 		int width = (int)image.getWidth();
 		int height = (int)image.getHeight();
 	
@@ -418,7 +422,7 @@ public class test extends Application {
 				for (int y = 255; y > 0; y--) {
 
 					short newColor = cthead[z][y][x];
-					Color c_new = transferFunction(newColor);
+					Color c_new = transferFunction(newColor, skinOpacity);
 
 					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
 					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
