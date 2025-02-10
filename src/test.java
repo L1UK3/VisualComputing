@@ -207,7 +207,7 @@ public class test extends Application {
 		if (val < -300) {
 			return Color.color(0.0, 0.0, 0.0, 0.0);
 		} else if (val >= -300 && val <= 49) {
-			return Color.color(1.0, 0.79, 0.6, 0.12);
+			return Color.color(0.82, 0.49, 0.18, 0.12);
 		} else if (val >= 50 && val <= 299) {
 			return Color.color(0.0, 0.0, 0.0, 0.0);
 		} else {
