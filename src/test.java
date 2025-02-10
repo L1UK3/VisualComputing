@@ -274,7 +274,7 @@ public class test extends Application {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 
-				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
 
 				for (int z = 255; z > 0; z--) {
 
@@ -344,11 +344,11 @@ public class test extends Application {
 			for (int z = 0; z < width; z++) {
 				
 				
-				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
 
 				for (int x = 255; x > 0; x--) {
 
-					short newColor = cthead[y][z][x];
+					float newColor = cthead[y][z][x];
 					Color c_new = transferFunction(newColor);
 
 					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
@@ -413,7 +413,7 @@ public class test extends Application {
 		for (int z = 0; z < width; z++) {
 			for (int x = 0; x < height; x++) {
 
-				Color c_accum = Color.color(0.0, 0.0, 0.0, 0.0);
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
 
 				for (int y = 255; y > 0; y--) {
 
