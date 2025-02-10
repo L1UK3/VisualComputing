@@ -116,7 +116,7 @@ public class test extends Application {
 			}
 		});
 
-		Slider opacitySlider = new Slider(0, 100, 50);
+		Slider opacitySlider = new Slider(0, 100, skinOpacity);
 		opacitySlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue <? extends Number >
 					observable, Number oldValue, Number newValue) {
@@ -125,7 +125,6 @@ public class test extends Application {
 				getZVR(VRZImage, skinOpacity);
 				getXVR(VRXImage, skinOpacity);
 				getYVR(VRYImage, skinOpacity);
-
 			}
 		});
 
