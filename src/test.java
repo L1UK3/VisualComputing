@@ -27,7 +27,7 @@ public class test extends Application {
 	int currXSlice = 128;
 	int currYSlice = 128;
 
-	int skinOpacity = 50;
+	int skinOpacity = 10;
 
     @Override
     public void start(Stage stage) throws FileNotFoundException {
@@ -287,9 +287,9 @@ public class test extends Application {
 						double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
 						double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
 						double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-						double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
+						
 
-						c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+						c_accum = Color.color(newRed, newGreen, newBlue);
 						image_writer.setColor(x, y, c_accum);
 
 				}
@@ -357,9 +357,8 @@ public class test extends Application {
 					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
 					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
 					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
 
-					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+					c_accum = Color.color(newRed, newGreen, newBlue);
 					image_writer.setColor(z, y, c_accum);
 
 				}
@@ -426,9 +425,8 @@ public class test extends Application {
 					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
 					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
 					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-					double newOpacity = c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getOpacity();
 
-					c_accum = Color.color(newRed, newGreen, newBlue, newOpacity);
+					c_accum = Color.color(newRed, newGreen, newBlue);
 					image_writer.setColor(x, z, c_accum);
 
 				}
