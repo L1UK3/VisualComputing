@@ -218,6 +218,18 @@ public class test extends Application {
 		}
 	}
 
+	private double newColor(double newC, double oldC, double opacity) {
+		return newC * opacity + (1 - opacity) * oldC;
+	}
+
+	private Color newAccumColor(Color c_new, Color c_accum) {
+		return Color.color(
+			newColor(c_new.getRed(), c_accum.getRed(), c_new.getOpacity()),
+			newColor(c_new.getGreen(), c_accum.getGreen(), c_new.getOpacity()),
+			newColor(c_new.getBlue(), c_accum.getBlue(), c_new.getOpacity()
+		));
+	}
+
 
 	// Z Direction
 
@@ -269,29 +281,22 @@ public class test extends Application {
 	}
 
 	public void getZVR(WritableImage image, double skinOpacity) {
-			int width = (int)image.getWidth();
-			int height = (int)image.getHeight();
-	
-			PixelWriter image_writer = image.getPixelWriter();
-	
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-	
-					Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
-	
-					for (int z = 255; z > 0; z--) {
-	
-						short newColor = cthead[z][y][x];
-						Color c_new = transferFunction(newColor, skinOpacity);
+		int width = (int)image.getWidth();
+		int height = (int)image.getHeight();
 
-						double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
-						double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
-						double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-						
+		PixelWriter image_writer = image.getPixelWriter();
 
-						c_accum = Color.color(newRed, newGreen, newBlue);
-						image_writer.setColor(x, y, c_accum);
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 
+				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
+				for (int z = 255; z > 0; z--) {
+
+					short newColor = cthead[z][y][x];
+					Color c_new = transferFunction(newColor, skinOpacity);
+					
+					c_accum = newAccumColor(c_new, c_accum);
+					image_writer.setColor(x, y, c_accum);
 				}
 			}
 		}
@@ -345,8 +350,6 @@ public class test extends Application {
 		
 		for (int y = 0; y < height; y++) {
 			for (int z = 0; z < width; z++) {
-				
-				
 				Color c_accum = Color.color(0.0, 0.0, 0.0, 1.0);
 
 				for (int x = 255; x > 0; x--) {
@@ -354,11 +357,7 @@ public class test extends Application {
 					float newColor = cthead[y][z][x];
 					Color c_new = transferFunction(newColor, skinOpacity);
 
-					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
-					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
-					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-
-					c_accum = Color.color(newRed, newGreen, newBlue);
+					c_accum = newAccumColor(c_new, c_accum);
 					image_writer.setColor(z, y, c_accum);
 
 				}
@@ -422,11 +421,7 @@ public class test extends Application {
 					short newColor = cthead[z][y][x];
 					Color c_new = transferFunction(newColor, skinOpacity);
 
-					double newRed = c_new.getRed() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getRed();
-					double newGreen = c_new.getGreen() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getGreen();
-					double newBlue = c_new.getBlue() * c_new.getOpacity() + (1 - c_new.getOpacity()) * c_accum.getBlue();
-
-					c_accum = Color.color(newRed, newGreen, newBlue);
+					c_accum = newAccumColor(c_new, c_accum);
 					image_writer.setColor(x, z, c_accum);
 
 				}
