@@ -1,6 +1,8 @@
 
 # Visual Computing Coursework
 
+Permission given by lecturer Professor Mark Jones to make this repository public.
+
 ## Setup Reminders:
 
 [JavaFX](https://openjfx.io/)
